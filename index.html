@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perceptron</title>
+    <link href="vendor/bootstrap.min.css" rel="stylesheet" />
+    <link href="app.css" rel="stylesheet" />
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1">Perceptron</span>
+      </div>
+    </nav>
+
+    <div class="container-fluid mt-2 text-center" id="app">
+      <section class="jumbotron text-center">
+        <div class="container">
+          <h1>Perseptron</h1>
+          <p class="lead text-muted">
+            Ush bu programma sonlarni juft yoki toqligini perseptron orqali
+            aniqlab beradi. Avval bu programmani o'qitib, so'ng tekshirish
+            mumkin.
+          </p>
+        </div>
+      </section>
+
+      <div class="card mt-1 mx-auto">
+        <div class="card-header">O'qitish</div>
+        <div class="card-body">
+          <h5 class="card-title">O'qitish uchun obrazrarni kiriting</h5>
+          <div class="row justify-content-center">
+            <div class="col-sm-12">
+              <button class="btn btn-danger ml-2" @click="clearInput(input)">
+                Tozalash
+              </button>
+            </div>
+            <div class="col-auto">
+              <table
+                id="input"
+                class="grid table"
+                cell-padding="5px"
+                cell-margin="5px"
+              >
+                <tr class="d-flex" v-for="(row, rowindex) in input">
+                  <td
+                    v-for="(cell, cellindex) in row"
+                    v-bind:class="{selected:cell}"
+                    @click="clicked(input, rowindex, cellindex)"
+                    :key="rowindex * 10 + cellindex"
+                  ></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="col-auto">
+            <select
+              class="browser-default custom-select ml-2 mr-2"
+              style="width: 100px"
+              v-model="isEven"
+            >
+              <option selected value="0">Toq</option>
+              <option value="1">Juft</option>
+            </select>
+          </div>
+          <div class="col-auto">
+            <button class="btn btn-primary mt-2" @click="addInput">
+              Qabul qilish
+            </button>
+          </div>
+          <hr />
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon3">Tetta</span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              id="basic-url"
+              aria-describedby="basic-addon3"
+              oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+              v-model="Tetta"
+            />
+          </div>
+          <h2>Vazn</h2>
+          <div class="col-auto">
+            <table class="table table-bordered">
+              <tr v-for="(row, rowindex) in weight">
+                <td
+                  v-for="(cell, cellindex) in row"
+                  v-bind:class="{selected:cell}"
+                  @click="clicked(rowindex, cellindex)"
+                  :key="rowindex * 10 + cellindex"
+                >
+                  {{cell}}
+                </td>
+              </tr>
+            </table>
+          </div>
+          <button class="btn btn-primary mt-2" @click="calculateWeight">
+            Vazn topish
+          </button>
+          <button class="btn btn-danger mt-2 ml-2" @click="clearWeight">
+            Tozalash
+          </button>
+        </div>
+      </div>
+
+      <div class="card mt-1 mx-auto">
+        <div class="card-header">Obrazni anglash</div>
+        <div class="card-body">
+          <div class="row justify-content-center">
+            <div class="col-auto">
+              <table
+                id="input"
+                class="grid table"
+                cell-padding="5px"
+                cell-margin="5px"
+              >
+                <tr class="d-flex" v-for="(row, rowindex) in newInput">
+                  <td
+                    v-for="(cell, cellindex) in row"
+                    v-bind:class="{selected:cell}"
+                    @click="clicked(newInput, rowindex, cellindex)"
+                    :key="rowindex * 10 + cellindex"
+                  ></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="col-auto">
+            <button class="btn btn-primary" @click="calcNewInput">
+              Qabul qilish
+            </button>
+            <button class="btn btn-danger ml-2" @click="clearInput(newInput)">
+              Tozalash
+            </button>
+            <h2 class="mt-2">Javob: {{Result}}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<script src="/vendor/vue.js"></script>
+<script src="app.js"></script>
+
+<script src="vendor/jquery-3.5.1.slim.min.js"></script>
+<script src="vendor/popper.min.js"></script>
+<script src="vendor/bootstrap.min.js"></script>
+<link href="vendor/bootstrap.bundle.min.js" rel="stylesheet" />

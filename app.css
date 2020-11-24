@@ -1,0 +1,15 @@
+table.grid {
+  border-collapse: separate;
+  border-spacing: 5px;
+}
+table.grid td {
+  background-color: antiquewhite;
+  width: 35px;
+  height: 25px;
+  padding: 5px;
+  margin: 5px;
+}
+
+table.grid td.selected {
+  background-color: black !important;
+}
