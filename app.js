@@ -4,7 +4,7 @@ var app = new Vue({
     Result: "",
     patterns: [],
     isEven: 0,
-    Tetta: 2,
+    Tetta: 0.001,
     input: [
       [0, 0, 0, 1, 0, 0, 0, 0],
       [0, 0, 1, 1, 0, 0, 0, 0],
